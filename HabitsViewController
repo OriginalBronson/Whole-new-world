@@ -1,0 +1,45 @@
+import UIKit
+
+class HabitsViewController: UIViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupUI()
+    }
+
+    func setupUI() {
+        title = "My Habits"
+        
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addHabit))
+        navigationItem.rightBarButtonItem = addButton
+        
+        let titleLabel = UILabel()
+        titleLabel.text = "Welcome to Your Habit Tracker"
+        titleLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        titleLabel.textAlignment = .center
+        
+        let descriptionLabel = UILabel()
+        descriptionLabel.text = "Track your habits and build a better routine."
+        descriptionLabel.font = UIFont.systemFont(ofSize: 16)
+        descriptionLabel.textAlignment = .center
+        descriptionLabel.numberOfLines = 0
+        
+        let stackView = UIStackView(arrangedSubviews: [titleLabel, descriptionLabel])
+        stackView.axis = .vertical
+        stackView.spacing = 16
+        stackView.alignment = .center
+        
+        view.addSubview(stackView)
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
+        ])
+    }
+
+    @objc func addHabit() {
+        // Implement logic to navigate to the page for adding a new habit
+    }
+}
