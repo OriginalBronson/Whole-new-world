@@ -90,11 +90,23 @@ class HabitViewController: UIViewController {
 
     /// Opens the sleep tracker screen when the "Sleep tracker" button is tapped.
     ///
-    /// This function creates a new view controller for tracking sleep, including buttons for
-    /// "Goodnight" and "Good morning".
+    /// This function creates and presents a `SleepTrackerViewController`.
     @objc func openSleepTracker() {
-        let sleepTrackerViewController = UIViewController()
-        sleepTrackerViewController.view.backgroundColor = .white
+        let sleepTrackerViewController = SleepTrackerViewController()
+        navigationController?.pushViewController(sleepTrackerViewController, animated: true)
+    }
+}
+
+/// View controller for tracking sleep, including buttons for "Goodnight" and "Good morning".
+class SleepTrackerViewController: UIViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupUI()
+    }
+
+    private func setupUI() {
+        view.backgroundColor = .white
 
         let goodnightButton = UIButton(type: .system)
         goodnightButton.setTitle("Goodnight", for: .normal)
@@ -102,11 +114,11 @@ class HabitViewController: UIViewController {
         let goodMorningButton = UIButton(type: .system)
         goodMorningButton.setTitle("Good morning", for: .normal)
 
-        sleepTrackerViewController.view.addSubview(goodnightButton)
-        sleepTrackerViewController.view.addSubview(goodMorningButton)
+        view.addSubview(goodnightButton)
+        view.addSubview(goodMorningButton)
 
         // Add constraints for the buttons on the sleep tracker screen as needed
 
-        navigationController?.pushViewController(sleepTrackerViewController, animated: true)
+        // ... (Add constraints for the buttons)
     }
 }
