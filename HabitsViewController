@@ -1,44 +1,54 @@
-import UIKit
+/// View controller for managing habits and routines.
+class HabitViewController: UIViewController {
 
-class HabitsViewController: UIViewController {
+    // MARK: - UIViewController Lifecycle
 
+    /// Sets up the initial UI elements when the view is loaded.
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
     }
 
+    // MARK: - UI Setup
+
+    /// Sets up the user interface, including title, navigation bar, and main content.
+    ///
+    /// This function initializes the main stack view containing title and description labels,
+    /// as well as the "Foundations" section with a label and a button.
     func setupUI() {
         title = "My Habits"
-        
+        setupNavigationBar()
+        setupMainStackView()
+        setupFoundationsSection()
+    }
+
+    /// Sets up the navigation bar with an "Add" button.
+    private func setupNavigationBar() {
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addHabit))
         navigationItem.rightBarButtonItem = addButton
-        
+    }
+
+    /// Sets up the main stack view containing the title and description labels.
+    private func setupMainStackView() {
         let titleLabel = UILabel()
-        titleLabel.text = "Welcome to Your Baseline Tracker"
+        titleLabel.text = "Welcome to Your Habit Tracker"
         titleLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         titleLabel.textAlignment = .center
+        
+        let descriptionLabel = UILabel()
+        descriptionLabel.text = "Track your habits and build a better routine."
+        descriptionLabel.font = UIFont.systemFont(ofSize: 16)
+        descriptionLabel.textAlignment = .center
+        descriptionLabel.numberOfLines = 0
         
         let stackView = UIStackView(arrangedSubviews: [titleLabel, descriptionLabel])
         stackView.axis = .vertical
         stackView.spacing = 16
         stackView.alignment = .center
 
-        // Add "Foundations" label
-        let foundationsLabel = UILabel()
-        foundationsLabel.text = "Foundations"
-        foundationsLabel.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-
-        // Add "Sleep tracker" button
-        let sleepTrackerButton = UIButton(type: .system)
-        sleepTrackerButton.setTitle("Sleep tracker", for: .normal)
-        sleepTrackerButton.addTarget(self, action: #selector(openSleepTracker), for: .touchUpInside)
-
-        stackView.addArrangedSubview(foundationsLabel)
-        stackView.addArrangedSubview(sleepTrackerButton)
-
         view.addSubview(stackView)
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        
+
         NSLayoutConstraint.activate([
             stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
@@ -46,12 +56,43 @@ class HabitsViewController: UIViewController {
         ])
     }
 
-    @objc func addHabit() {
-        // Implement logic to navigate to the page for adding a new habit
+    /// Sets up the "Foundations" section with a label and a button.
+    private func setupFoundationsSection() {
+        let foundationsLabel = UILabel()
+        foundationsLabel.text = "Foundations"
+        foundationsLabel.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        
+        let sleepTrackerButton = UIButton(type: .system)
+        sleepTrackerButton.setTitle("Sleep tracker", for: .normal)
+        sleepTrackerButton.addTarget(self, action: #selector(openSleepTracker), for: .touchUpInside)
+        
+        let stackView = UIStackView(arrangedSubviews: [foundationsLabel, sleepTrackerButton])
+        stackView.axis = .vertical
+        stackView.spacing = 16
+        stackView.alignment = .center
+
+        view.addSubview(stackView)
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate([
+            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
+        ])
     }
 
+    // MARK: - Actions
+
+    /// Adds a new habit when the "Add" button is tapped.
+    @objc func addHabit() {
+        // Implement logic for adding a new habit
+    }
+
+    /// Opens the sleep tracker screen when the "Sleep tracker" button is tapped.
+    ///
+    /// This function creates a new view controller for tracking sleep, including buttons for
+    /// "Goodnight" and "Good morning".
     @objc func openSleepTracker() {
-        // Implement logic to navigate to the sleep tracker screen
         let sleepTrackerViewController = UIViewController()
         sleepTrackerViewController.view.backgroundColor = .white
 
