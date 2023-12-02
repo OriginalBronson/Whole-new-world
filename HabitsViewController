@@ -14,21 +14,28 @@ class HabitsViewController: UIViewController {
         navigationItem.rightBarButtonItem = addButton
         
         let titleLabel = UILabel()
-        titleLabel.text = "Welcome to Your Habit Tracker"
+        titleLabel.text = "Welcome to Your Baseline Tracker"
         titleLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         titleLabel.textAlignment = .center
-        
-        let descriptionLabel = UILabel()
-        descriptionLabel.text = "Track your habits and build a better routine."
-        descriptionLabel.font = UIFont.systemFont(ofSize: 16)
-        descriptionLabel.textAlignment = .center
-        descriptionLabel.numberOfLines = 0
         
         let stackView = UIStackView(arrangedSubviews: [titleLabel, descriptionLabel])
         stackView.axis = .vertical
         stackView.spacing = 16
         stackView.alignment = .center
-        
+
+        // Add "Foundations" label
+        let foundationsLabel = UILabel()
+        foundationsLabel.text = "Foundations"
+        foundationsLabel.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+
+        // Add "Sleep tracker" button
+        let sleepTrackerButton = UIButton(type: .system)
+        sleepTrackerButton.setTitle("Sleep tracker", for: .normal)
+        sleepTrackerButton.addTarget(self, action: #selector(openSleepTracker), for: .touchUpInside)
+
+        stackView.addArrangedSubview(foundationsLabel)
+        stackView.addArrangedSubview(sleepTrackerButton)
+
         view.addSubview(stackView)
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -41,5 +48,24 @@ class HabitsViewController: UIViewController {
 
     @objc func addHabit() {
         // Implement logic to navigate to the page for adding a new habit
+    }
+
+    @objc func openSleepTracker() {
+        // Implement logic to navigate to the sleep tracker screen
+        let sleepTrackerViewController = UIViewController()
+        sleepTrackerViewController.view.backgroundColor = .white
+
+        let goodnightButton = UIButton(type: .system)
+        goodnightButton.setTitle("Goodnight", for: .normal)
+
+        let goodMorningButton = UIButton(type: .system)
+        goodMorningButton.setTitle("Good morning", for: .normal)
+
+        sleepTrackerViewController.view.addSubview(goodnightButton)
+        sleepTrackerViewController.view.addSubview(goodMorningButton)
+
+        // Add constraints for the buttons on the sleep tracker screen as needed
+
+        navigationController?.pushViewController(sleepTrackerViewController, animated: true)
     }
 }
