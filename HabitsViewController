@@ -110,15 +110,22 @@ class SleepTrackerViewController: UIViewController {
 
         let goodnightButton = UIButton(type: .system)
         goodnightButton.setTitle("Goodnight", for: .normal)
+        view.addSubview(goodnightButton)
 
         let goodMorningButton = UIButton(type: .system)
         goodMorningButton.setTitle("Good morning", for: .normal)
-
-        view.addSubview(goodnightButton)
         view.addSubview(goodMorningButton)
 
-        // Add constraints for the buttons on the sleep tracker screen as needed
+        // Add constraints for the buttons
+        goodnightButton.translatesAutoresizingMaskIntoConstraints = false
+        goodMorningButton.translatesAutoresizingMaskIntoConstraints = false
 
-        // ... (Add constraints for the buttons)
+        NSLayoutConstraint.activate([
+            goodnightButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            goodnightButton.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -20), // Adjust the constant as needed
+
+            goodMorningButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            goodMorningButton.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 20) // Adjust the constant as needed
+        ])
     }
 }
