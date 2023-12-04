@@ -1,3 +1,5 @@
+import UIKit
+
 /// View controller for managing habits and routines.
 class HabitViewController: UIViewController {
 
