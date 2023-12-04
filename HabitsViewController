@@ -17,7 +17,7 @@ class HabitViewController: UIViewController {
     ///
     /// This function initializes the main stack view containing title and description labels,
     /// as well as the "Foundations" section with a label and a button.
-    func setupUI() {
+    private func setupUI() {
         title = "My Habits"
         setupNavigationBar()
         setupMainStackView()
@@ -86,48 +86,15 @@ class HabitViewController: UIViewController {
     // MARK: - Actions
 
     /// Adds a new habit when the "Add" button is tapped.
-    @objc func addHabit() {
+    @objc private func addHabit() {
         // Implement logic for adding a new habit
     }
 
     /// Opens the sleep tracker screen when the "Sleep tracker" button is tapped.
     ///
     /// This function creates and presents a `SleepTrackerViewController`.
-    @objc func openSleepTracker() {
+    @objc private func openSleepTracker() {
         let sleepTrackerViewController = SleepTrackerViewController()
         navigationController?.pushViewController(sleepTrackerViewController, animated: true)
-    }
-}
-
-/// View controller for tracking sleep, including buttons for "Goodnight" and "Good morning".
-class SleepTrackerViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupUI()
-    }
-
-    private func setupUI() {
-        view.backgroundColor = .white
-
-        let goodnightButton = UIButton(type: .system)
-        goodnightButton.setTitle("Goodnight", for: .normal)
-        view.addSubview(goodnightButton)
-
-        let goodMorningButton = UIButton(type: .system)
-        goodMorningButton.setTitle("Good morning", for: .normal)
-        view.addSubview(goodMorningButton)
-
-        // Add constraints for the buttons
-        goodnightButton.translatesAutoresizingMaskIntoConstraints = false
-        goodMorningButton.translatesAutoresizingMaskIntoConstraints = false
-
-        NSLayoutConstraint.activate([
-            goodnightButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            goodnightButton.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -20), // Adjust the constant as needed
-
-            goodMorningButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            goodMorningButton.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 20) // Adjust the constant as needed
-        ])
     }
 }
