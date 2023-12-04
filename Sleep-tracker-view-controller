@@ -1,5 +1,7 @@
+```swift
 import UIKit
 
+/// A view controller for tracking sleep-related activities.
 class SleepTrackerViewController: UIViewController {
 
     override func viewDidLoad() {
@@ -7,20 +9,25 @@ class SleepTrackerViewController: UIViewController {
         setupUI()
     }
 
+    /// Sets up the initial user interface.
     private func setupUI() {
         view.backgroundColor = .white
         setupButtons()
     }
 
+    /// Configures and adds Goodnight and Good Morning buttons to the view.
     private func setupButtons() {
+        // Goodnight button
         let goodnightButton = UIButton(type: .system)
         goodnightButton.setTitle("Goodnight", for: .normal)
         view.addSubview(goodnightButton)
 
+        // Good Morning button
         let goodMorningButton = UIButton(type: .system)
         goodMorningButton.setTitle("Good morning", for: .normal)
         view.addSubview(goodMorningButton)
 
+        // Set up auto-layout constraints
         goodnightButton.translatesAutoresizingMaskIntoConstraints = false
         goodMorningButton.translatesAutoresizingMaskIntoConstraints = false
 
@@ -33,3 +40,4 @@ class SleepTrackerViewController: UIViewController {
         ])
     }
 }
+```
