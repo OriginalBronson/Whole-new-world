@@ -1,0 +1,35 @@
+import UIKit
+
+class SleepTrackerViewController: UIViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupUI()
+    }
+
+    private func setupUI() {
+        view.backgroundColor = .white
+        setupButtons()
+    }
+
+    private func setupButtons() {
+        let goodnightButton = UIButton(type: .system)
+        goodnightButton.setTitle("Goodnight", for: .normal)
+        view.addSubview(goodnightButton)
+
+        let goodMorningButton = UIButton(type: .system)
+        goodMorningButton.setTitle("Good morning", for: .normal)
+        view.addSubview(goodMorningButton)
+
+        goodnightButton.translatesAutoresizingMaskIntoConstraints = false
+        goodMorningButton.translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate([
+            goodnightButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            goodnightButton.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -20),
+
+            goodMorningButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            goodMorningButton.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 20)
+        ])
+    }
+}
